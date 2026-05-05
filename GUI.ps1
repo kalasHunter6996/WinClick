@@ -159,15 +159,15 @@ $tweaks = [ordered]@{
         @("Удалить Помощника по удаленному подключению", "/RemoveRemoteAssistant"),
         @("Удалить лишние папки приложений в Пуске", "/CleanStartMenu")
     )
-    "Компоненты Windows" = @(
-        ,@("Удалить все дополнительные компоненты", "/RemoveComponents")
-    )
     "Браузер Edge и WebView2" = @(
         @("Удалить Microsoft Edge", "/RemoveEdge"),
         @("Удалить Edge WebView2", "/RemoveEdgeWebView")
     )
     "Защитник Windows" = @(
         ,@("Удалить Защитнике Windows (DefenderKiller на Рабочем столе)", "/RemoveDefender")
+    )
+	"Компоненты Windows" = @(
+        ,@("Удалить все дополнительные компоненты", "/RemoveComponents")
     )
     "Планировщик задач" = @(
         ,@("Отключить задачи телеметрии и проверок", "/DisableTasks")
