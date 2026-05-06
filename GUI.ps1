@@ -1,10 +1,63 @@
-﻿Add-Type -AssemblyName PresentationFramework, PresentationCore, WindowsBase
+﻿param(
+    [switch]$ShowReboot
+)
 
+Add-Type -AssemblyName PresentationFramework, PresentationCore, WindowsBase
+
+$registryPath = "HKCU:\Console\%%Startup"
+$keys = @{
+    "DelegationConsole"  = "{B23D10C0-E52E-411E-9D5B-C09FDF709C7D}"
+    "DelegationTerminal" = "{B23D10C0-E52E-411E-9D5B-C09FDF709C7D}"
+}
+
+if (-not (Test-Path $registryPath)) {
+    New-Item -Path $registryPath -Force | Out-Null
+}
+
+foreach ($name in $keys.Keys) {
+    Set-ItemProperty -Path $registryPath -Name $name -Value $keys[$name] -Type String -Force
+}
 # ================= ПУТИ =================
 $batPath = Join-Path $PSScriptRoot "WinClick.bat"
 $workDir = Join-Path $PSScriptRoot "Work"
 
 # ================= ФУНКЦИИ =================
+function Show-RebootPrompt {
+    $doneWin = [System.Windows.Window]::new()
+    $doneWin.Width = 250; $doneWin.Height = 130; $doneWin.AllowsTransparency = $true; $doneWin.WindowStyle = "None"
+    $doneWin.WindowStartupLocation = "CenterScreen"; $doneWin.Topmost = $true; $doneWin.Background = [System.Windows.Media.Brushes]::Transparent
+    
+    $doneBorder = [System.Windows.Controls.Border]::new()
+    $doneBorder.Background = $darkGrayBrush; $doneBorder.CornerRadius = 12; $doneBorder.BorderBrush = $accentBrush; $doneBorder.BorderThickness = 1
+    
+    $doneStack = [System.Windows.Controls.StackPanel]::new()
+    $doneStack.VerticalAlignment = "Center"
+    $doneText = [System.Windows.Controls.TextBlock]::new()
+    $doneText.Text = "Настройка завершена!`n`nПерезагрузить ПК?"; $doneText.Foreground = $whiteBrush
+    $doneText.TextAlignment = "Center"; $doneText.Margin = "0,-5,0,10"; $doneText.FontFamily = "Bahnschrift"
+    
+    $btnP = [System.Windows.Controls.StackPanel]::new(); $btnP.Orientation = "Horizontal"; $btnP.HorizontalAlignment = "Center"
+    $bR = [System.Windows.Controls.Button]::new(); $bR.Content = "ДА"; $bR.Style = $buttonStyle; $bR.Width = 70; $bR.Height = 28; $bR.FontFamily = "Bahnschrift"
+    
+    Set-FadeIn $doneWin
+    
+    $bR.Add_Click({ 
+        Close-WindowAnimated $doneWin
+        Start-Process "shutdown.exe" -ArgumentList "/r /t 1 /f" -WindowStyle Hidden
+    })
+    $bC = [System.Windows.Controls.Button]::new(); $bC.Content = "НЕТ"; $bC.Style = $buttonStyle; $bC.Width = 70; $bC.Height = 28; $bC.FontFamily = "Bahnschrift"
+    $bC.Add_Click({ 
+        Close-WindowAnimated $doneWin
+        # Если запущено из GUI, основное окно закроется само по логике кнопки "Оптимизировать"
+    })
+    $bR.Margin = [System.Windows.Thickness]::new(0, 10, 5, 0) 
+    $bC.Margin = [System.Windows.Thickness]::new(5, 10, 0, 0)
+    $btnP.Children.Add($bR); $btnP.Children.Add($bC)
+    $doneStack.Children.Add($doneText); $doneStack.Children.Add($btnP)
+    $doneBorder.Child = $doneStack; $doneWin.Content = $doneBorder
+    $doneWin.ShowDialog() | Out-Null
+}
+
 function Update-OptimizeButtonState {
     $anyChecked = $false
     foreach ($cb in $allCBs) {
@@ -164,7 +217,7 @@ $tweaks = [ordered]@{
         @("Удалить Edge WebView2", "/RemoveEdgeWebView")
     )
     "Защитник Windows" = @(
-        ,@("Удалить Защитнике Windows (DefenderKiller на Рабочем столе)", "/RemoveDefender")
+        ,@("Удалить Защитнике Windows (DefenderKiller)", "/RemoveDefender")
     )
 	"Компоненты Windows" = @(
         ,@("Удалить все дополнительные компоненты", "/RemoveComponents")
@@ -487,46 +540,15 @@ $btnOpt.Add_Click({
     $argsString = ($selected | ForEach-Object { $_.Tag }) -join " "
 	$window.Hide()
 	$proc = Start-Process cmd.exe -ArgumentList "/c call `"$batPath`" $argsString" -PassThru
-	while (-not $proc.HasExited) {
-		[System.Windows.Threading.Dispatcher]::CurrentDispatcher.Invoke([Action]{}, [System.Windows.Threading.DispatcherPriority]::Background)
-		Start-Sleep -Seconds 1
-	}
-
-    $doneWin = [System.Windows.Window]::new()
-    $doneWin.Width = 250; $doneWin.Height = 130; $doneWin.AllowsTransparency = $true; $doneWin.WindowStyle = "None"
-    $doneWin.WindowStartupLocation = "CenterScreen"; $doneWin.Topmost = $true; $doneWin.Background = [System.Windows.Media.Brushes]::Transparent
-    
-    $doneBorder = [System.Windows.Controls.Border]::new()
-    $doneBorder.Background = $darkGrayBrush; $doneBorder.CornerRadius = 12; $doneBorder.BorderBrush = $accentBrush; $doneBorder.BorderThickness = 1
-    
-    $doneStack = [System.Windows.Controls.StackPanel]::new()
-    $doneStack.VerticalAlignment = "Center"
-    $doneText = [System.Windows.Controls.TextBlock]::new()
-    $doneText.Text = "Настройка завершена!`n`nПерезагрузить ПК?"; $doneText.Foreground = $whiteBrush
-    $doneText.TextAlignment = "Center"; $doneText.Margin = "0,-5,0,10"; $doneText.FontFamily = "Bahnschrift"
-    
-    $btnP = [System.Windows.Controls.StackPanel]::new(); $btnP.Orientation = "Horizontal"; $btnP.HorizontalAlignment = "Center"
-    $bR = [System.Windows.Controls.Button]::new(); $bR.Content = "ДА"; $bR.Style = $buttonStyle; $bR.Width = 70; $bR.Height = 28; $bR.FontFamily = "Bahnschrift"
-	Set-FadeIn $doneWin
-	$bR.Add_Click({ 
-		Close-WindowAnimated $doneWin
-		Close-WindowAnimated $window
-		Start-Process "shutdown.exe" -ArgumentList "/r /t 1 /f" -WindowStyle Hidden
-	})
-    $bC = [System.Windows.Controls.Button]::new(); $bC.Content = "НЕТ"; $bC.Style = $buttonStyle; $bC.Width = 70; $bC.Height = 28; $bC.FontFamily = "Bahnschrift"
-	$bC.Add_Click({ 
-		Close-WindowAnimated $doneWin
-		Close-WindowAnimated $window
-	})
-	$bR.Margin = [System.Windows.Thickness]::new(0, 10, 5, 0) 
-	$bC.Margin = [System.Windows.Thickness]::new(5, 10, 0, 0)
-    $btnP.Children.Add($bR); $btnP.Children.Add($bC)
-    $doneStack.Children.Add($doneText); $doneStack.Children.Add($btnP)
-    $doneBorder.Child = $doneStack; $doneWin.Content = $doneBorder
-    $doneWin.ShowDialog() | Out-Null
 })
 
 $mainBorder.Child = $root
 $window.Content = $mainBorder
 Set-FadeIn $window
-$window.ShowDialog() | Out-Null
+
+if ($ShowReboot) {
+    Show-RebootPrompt
+} else {
+    Set-FadeIn $window
+    $window.ShowDialog() | Out-Null
+}
