@@ -1,18 +1,12 @@
 @echo off
 	Color 0f
-	Mode 20,1
+	Mode 200,100
 	chcp 65001 >nul
 	echo "%~dp0\Work" | findstr /r "[()!]" >nul && echo Путь до .bat содержит недопустимые символы. && timeout /t 7 >nul && exit
 	SetLocal EnableDelayedExpansion
 	cd /d "%~dp0\Work"
 	reg query "HKU\S-1-5-19" >nul 2>&1 || (Helper /Elevate "%~f0" && exit || %ch% {red} Права не выданы.{\n#}&& pause>nul && exit)
 	set "TI=NSudoLG -U:T -P:E -ShowWindowMode:Hide -Wait cmd.exe /c"
-	
-	reg query "HKCU\Console\%%%%Startup" /v DelegationConsole | find /i "B23D10C0" >nul 2>&1 || (
-	tasklist /fi "imagename eq WindowsTerminal.exe" 2>nul | find /i "WindowsTerminal" >nul 2>&1 && (
-	for %%p in (DelegationConsole DelegationTerminal) do reg add "HKCU\Console\%%%%Startup" /v "%%p" /t reg_sz /d "{B23D10C0-E52E-411E-9D5B-C09FDF709C7D}" /f >nul 2>&1
-	start "" "%~f0" && exit
-))
 	Helper /HideConsole
 	call :WinVer
 
@@ -21,10 +15,15 @@
 		timeout /t 1 /nobreak >nul 2>&1
 		sc query wuauserv | find /i "RUNNING" >nul 2>&1 && %TI% net stop wuauserv
 	)
-	
-	
+
 :loop
-    if "%~1"=="" start /b "" Helper /Overlay & exit
+    if "%~1" == "" (
+        start /b "" Helper /Overlay
+		chcp 866>nul
+		powershell -NoProfile -ExecutionPolicy Bypass -File "%Temp%\wc70tmp\GUI.ps1" -ShowReboot
+		chcp 65001 >nul
+        exit
+    )
     set "arg=%~1"
     if /i "%arg%"=="/RemoveUpdateFiles" call :RemoveOverlay & call :RemoveUpdateFiles
     if /i "%arg%"=="/RemoveStoreCache" call :RemoveOverlay & call :RemoveStoreCache
@@ -188,7 +187,9 @@ Rem Удаление лишних папок с приложениями в Пу
 
 :RemoveRemoteAssistant
 Rem Удаление Помощника по удаленному подключению
+	chcp 866 >nul 
 	PowerShell "Start-Process mstsc.exe -ArgumentList '/uninstall' -WindowStyle Hidden -ErrorAction SilentlyContinue"
+	chcp 65001 >nul
 	timeout /t 5 /nobreak >nul 2>&1
 	taskkill /f /im mstsc.exe >nul 2>&1
 	exit /b
@@ -210,26 +211,13 @@ Rem Удаление Помощника по удаленному подключ
 	exit /b
 	
 :RemoveDefender
-	timeout /t 3 /nobreak >nul 2>&1
-Rem Если есть DK
-	if exist "%USERPROFILE%\Desktop\DK\DefenderKiller.bat" set "DK=1" & set "DK=%USERPROFILE%\Desktop\DK\DefenderKiller.bat"
-	if exist "%USERPROFILE%\Desktop\DefenderKiller.bat" set "DK=1" & set "DK=%USERPROFILE%\Desktop\DefenderKiller.bat"
-	if exist "%USERPROFILE%\Desktop\DefenderKiller\DefenderKiller.bat" set "DK=1" & set "DK=%USERPROFILE%\Desktop\DefenderKiller\DefenderKiller.bat"
-
-	if defined DK (
+	timeout /t 2 /nobreak >nul 2>&1
 		start /b "" Helper /Overlay
-		start /wait "" "!DK!" /DelWD
-
-		:check
+		start /wait "" "%~dp0\Work\DK\DefenderKiller.bat" /DelWD
+	:check
 		reg query "HKLM\Software\Microsoft\Windows\CurrentVersion\WINEVT\Channels\Microsoft-Windows-Windows Defender/Operational" >nul 2>&1 && (
-			timeout /t 10 >nul
+			timeout /t 5 >nul
 			goto check
-		)
-	) 
-
-	if not defined DK (
-		start /b "" Helper /Overlay "DefenderKiller не обнаружен `n`nПропускаю..." /Font "Bahnschrift" /Size "40"
-		timeout /t 3 >nul
 	)
 	exit /b
 	
@@ -340,7 +328,9 @@ Rem Увеличить кэш иконок
 	
 :SvcSplit
 Rem Увеличение порога разделения SVC
+	chcp 866 >nul
     PowerShell "$key = 'HKLM:\SYSTEM\CurrentControlSet\Control'; if (-not (Get-ItemProperty -Path $key -Name 'SvcHostSplitThresholdInKB' -ErrorAction SilentlyContinue)) { Write-Output ' Параметра SvcHostSplitThresholdInKB нет, отмена действий'; Pause; Exit } elseif (-not (Get-ItemProperty -Path $key -Name 'SvcHostSplitThresholdInKB_orig' -ErrorAction SilentlyContinue)) { Rename-ItemProperty -Path $key -Name 'SvcHostSplitThresholdInKB' -NewName 'SvcHostSplitThresholdInKB_orig'; $mem = (Get-CimInstance Win32_OperatingSystem).TotalVisibleMemorySize + 1024000; Set-ItemProperty -Path $key -Name 'SvcHostSplitThresholdInKB' -Value $mem -Type DWord }
+	chcp 65001 >nul
 	exit /b
 	
 :FastFolders
