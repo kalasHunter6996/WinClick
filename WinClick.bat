@@ -1,6 +1,6 @@
 @echo off
 	Color 0f
-	Mode 200,100
+	Mode 20,10
 	chcp 65001 >nul
 	echo "%~dp0\Work" | findstr /r "[()!]" >nul && echo Путь до .bat содержит недопустимые символы. && timeout /t 7 >nul && exit
 	SetLocal EnableDelayedExpansion
