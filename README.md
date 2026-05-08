@@ -98,7 +98,7 @@
 > Если утилита "зависла" на этом пункте, значит есть подключение к сети, что крайне не рекомендуется. Завершите все процессы Edge WebView2 через Диспетчер задач.
 
 > [!Tip]
-> Портативные браузеры [Cent](https://www.centbrowser.com/), [CatsXP](https://www.catsxp.com/), [Floorp](https://floorp.app/).
+> Портативные браузеры [Cent](https://www.centbrowser.com/), [CatsXP](https://www.catsxp.com/), [Floorp](https://floorp.app/), [Vivaldi](https://vivaldi.com/).
 #
 ### 🛡️ Защитник Windows
 - Удалить Защитник Windows
