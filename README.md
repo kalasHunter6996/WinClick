@@ -7,7 +7,7 @@
 
 #
 
-[![Смотреть видео](https://i.ibb.co/N2RkzMXj/Untitled-2.png)](https://www.youtube.com/watch?v=qmHfwJpnGYA)
+[![Смотреть видео](https://i.ibb.co/N2RkzMXj/Untitled-2.png)](https://youtu.be/JMTuY_Gi70U)
 
 <table align="center" style="border: none; border-collapse: collapse;">
   <tbody>
