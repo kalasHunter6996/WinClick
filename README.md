@@ -7,14 +7,39 @@
 
 #
 
-[![Смотреть видео](https://img.youtube.com/vi/qmHfwJpnGYA/maxresdefault.jpg)](https://www.youtube.com/watch?v=qmHfwJpnGYA)
+[![Смотреть видео](https://i.ibb.co/N2RkzMXj/Untitled-2.png)](https://www.youtube.com/watch?v=qmHfwJpnGYA)
 
-<div align="center">
-
-![Скачиваний](https://img.shields.io/github/downloads/MartyFiles/WinClick/Release/total?style=for-the-badge&label=Скачиваний&color=blue&logo=download)
-
-
-</div>
+<table align="center" style="border: none; border-collapse: collapse;">
+  <tbody>
+    <tr>
+      <td align="center" width="33%"><b>Скачиваний</b></td>
+      <td align="center" width="33%"><b>Обзор</b></td>
+      <td align="center" width="33%"><b>Донаты</b></td>
+    </tr>
+    <tr>
+      <td align="center">
+        <a href="#"><img src="https://img.shields.io/github/downloads/MartyFiles/WinClick/Release/total?style=for-the-badge&label=WinClick%202.0&color=blue&logo=download"></a>
+      </td>
+      <td align="center">
+        <a href="https://youtu.be/JMTuY_Gi70U"><img src="https://img.shields.io/badge/WinClick%202.0-red?style=for-the-badge&logo=youtube"></a>
+      </td>
+      <td align="center">
+        <a href="https://t.me/tribute/app?startapp=dg3u"><img src="https://img.shields.io/badge/Telegram-26A5E4?style=for-the-badge&logo=telegram&logoColor=white"></a>
+      </td>
+    </tr>
+    <tr>
+      <td align="center">
+        <a href="#"><img src="https://img.shields.io/badge/WinClick%201.0-15k-blue?style=for-the-badge&logo=download"></a>
+      </td>
+      <td align="center">
+        <a href="https://youtu.be/qmHfwJpnGYA"><img src="https://img.shields.io/badge/WinClick%201.0-red?style=for-the-badge&logo=youtube"></a>
+      </td>
+      <td align="center">
+        <a href="https://www.buymeacoffee.com/martyfiles"><img src="https://img.shields.io/badge/Buy%20Me%20a%20Coffee-FFDD00?style=for-the-badge&logo=buy-me-a-coffee&logoColor=black"></a>
+      </td>
+    </tr>
+  </tbody>
+</table>
 
 #
 > [!Caution]
@@ -167,13 +192,6 @@
 > [!IMPORTANT]
 > На слабых ПК может занимать много времени.
 #
-
 <div align="center">
-  
-### Донаты
-
-[![Buy Me a Coffee](https://img.shields.io/badge/Buy%20Me%20a%20Coffee-FFDD00?style=for-the-badge&logo=buy-me-a-coffee&logoColor=black)](https://www.buymeacoffee.com/martyfiles)
-[![Ko-fi](https://img.shields.io/badge/Ko--fi-29ABE0?style=for-the-badge&logo=ko-fi&logoColor=white)](https://ko-fi.com/martyfiles)
-[![Telegram](https://img.shields.io/badge/Telegram-26A5E4?style=for-the-badge&logo=telegram&logoColor=white)](https://t.me/tribute/app?startapp=dg3u)
-
-</div>
+<strong>ПРИЯТНОГО ПОЛЬЗОВАНИЯ!</strong>
+<div>
