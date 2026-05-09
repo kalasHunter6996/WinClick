@@ -515,6 +515,16 @@ exit /b
 	
 :InstallVC
 	start "" /wait "%~dp0\Work\VisualCppRedist_AIO_x86_x64.exe" /aiA /gm2
+	for %%R in (
+    vcredist08_x64 vcredist08_x86 
+    vcredist09_x64 vcredist09_x86 
+    vcredist10_x64 vcredist10_x86  
+    vcredist11_x64 vcredist11_x86 
+    vcredist12_x64 vcredist12_x86 
+    vcredist14_x64 vcredist14_x86
+	) do (
+    reg delete "HKLM\Software\Microsoft\Windows\CurrentVersion\Uninstall\%%R" /f >nul 2>&1
+	)
 	exit /b
 	
 :InstallDX
