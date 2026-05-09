@@ -7,14 +7,49 @@
 
 #
 
-[![Смотреть видео](https://img.youtube.com/vi/qmHfwJpnGYA/maxresdefault.jpg)](https://www.youtube.com/watch?v=qmHfwJpnGYA)
+[![Смотреть видео](https://i.ibb.co/N2RkzMXj/Untitled-2.png)](https://youtu.be/JMTuY_Gi70U)
 
-<div align="center">
-
-![Скачиваний](https://img.shields.io/github/downloads/MartyFiles/WinClick/Release/total?style=for-the-badge&label=Скачиваний&color=blue&logo=download)
-
-
-</div>
+<table align="center" style="border: none; border-collapse: collapse;">
+  <tbody>
+    <tr>
+      <td align="center" width="33%"><b>Скачивания</b></td>
+      <td align="center" width="33%"><b>Обзоры</b></td>
+      <td align="center" width="33%"><b>Донаты</b></td>
+    </tr>
+    <tr>
+      <td align="center">
+        <a href="https://github.com/MartyFiles/WinClick/releases/download/Release/WinClick.exe">
+          <img src="https://img.shields.io/github/downloads/MartyFiles/WinClick/Release/total?style=for-the-badge&label=WinClick%202.0&color=blue&logo=download">
+        </a>
+      </td>
+      <td align="center">
+        <a href="https://youtu.be/JMTuY_Gi70U">
+          <img src="https://img.shields.io/badge/WinClick%202.0-red?style=for-the-badge&logo=youtube">
+        </a>
+      </td>
+      <td align="center">
+        <a href="https://t.me/tribute/app?startapp=dg3u">
+          <img src="https://img.shields.io/badge/Telegram%20/Tribute-26A5E4?style=for-the-badge&logo=telegram&logoColor=white">
+        </a>
+      </td>
+    </tr>
+    <tr>
+      <td align="center">
+        <img src="https://img.shields.io/badge/WinClick%201.0-15k-blue?style=for-the-badge&logo=download">
+      </td>
+      <td align="center">
+        <a href="https://youtu.be/qmHfwJpnGYA">
+          <img src="https://img.shields.io/badge/WinClick%201.0-red?style=for-the-badge&logo=youtube">
+        </a>
+      </td>
+      <td align="center">
+        <a href="https://www.buymeacoffee.com/martyfiles">
+          <img src="https://img.shields.io/badge/Buy%20Me%20a%20Coffee-FFDD00?style=for-the-badge&logo=buy-me-a-coffee&logoColor=black">
+        </a>
+      </td>
+    </tr>
+  </tbody>
+</table>
 
 #
 > [!Caution]
@@ -26,15 +61,17 @@
 > [!TIP]
 > Установили Windows 11 без интернета > Настроили и запустили WinClick > Подождали > Получили чистую систему.
 #
-### Список настроек и твиков:
+<h3 align="center">
+  Полный перечень разделов и их твиков / настроек:
+</h3>
 
 ### 🗑️ Очистка
 - Удалить файлы обновлений
-`(Файлы скачанных обновнений для Windows и браузера Edge)`
+`(Файлы скачанных обновлений для Windows и браузера Edge)`
 - Удалить кэш Microsoft Store
 - Удалить кэш Проводника
 - Очистить хранилище WinSxS
-`(Удалит устаревшие и заменненные версии компонентов)`
+`(Удалит устаревшие и замененные версии компонентов)`
 - Удалить лишние папки на диске С
 `(Windows.old, PerfLogs и inetpub)`
 - Удалить старые драйверы
@@ -43,43 +80,47 @@
 #
 ### 📦 Предустановленные приложения
 - Удалить все UWP-приложения
-`(Программы в Настройки > Приложения > Установленные приложения, кроме Edge, WebView2, OneDrive и Подключение к удаленному рабочему столу)`
+`(Все программы в Настройки > Приложения > Установленные приложения, кроме Edge, WebView2, OneDrive и Подключение к удаленному рабочему столу)`
 - Удалить OneDrive
 - Удалить Подключение к удаленному рабочему столу
 - Удалить лишние папки приложений в Пуске
-`(Удаляет папки "Специальные возможности" и "Стандартные - Windows")`
-> [!Tip]
-> Восстановить Microsoft Store можно командой в командной строке: `wsreset -i`
-#
-### 🧩 Компоненты Windows
-- Удалить все предустановленные компоненты
-`(Удаляет все компоненты в Настройки > Система > Дополнительные компоненты > Посмотреть компоненты)` 
+`(Папки "Специальные возможности" и "Стандартные - Windows")`
 > [!IMPORTANT]
-> Компонент `Язык сценариев VBScript` может быть нужен для установки некоторых программ (Epic Games) и драйверов (AMD).
->
-> Если столкнулись с проблемами – установите его в `Настройки > Система > Дополнительные компоненты > Посмотреть компоненты > Посмотреть доступные функции`.
+> При удалении всех UWP-приложений также удалится Microsoft Store.
+
+> [!Tip]
+> Восстановить магазин приложений можно командой в командной строке: `wsreset -i`
 #
 ### 🌐 Браузер Edge и WebView2
 - Удалить Microsoft Edge
 - Удалить Edge WebView2
 > [!IMPORTANT]
-> Если утилита "зависла" на этом пункте, завершите все процессы Edge WebView2 через Диспетчер задач.
+> Если утилита "зависла" на этом пункте, значит есть подключение к сети, что крайне не рекомендуется. Завершите все процессы Edge WebView2 через Диспетчер задач.
 
 > [!Tip]
-> Портативные браузеры [Cent](https://www.centbrowser.com/), [CatsXP](https://www.catsxp.com/), [Floorp](https://floorp.app/).
+> Портативные браузеры [Cent](https://www.centbrowser.com/), [CatsXP](https://www.catsxp.com/), [Floorp](https://floorp.app/), [Vivaldi](https://vivaldi.com/).
 #
 ### 🛡️ Защитник Windows
 - Удалить Защитник Windows
 > [!IMPORTANT]
-> Удаление происходит только при наличии утилиты [DefenderKiller](https://t.me/martyfiles/1504) на Рабочем столе.
-> Если ее нет, WinClick пропустит этот этап.
+> Удаление происходит при помощи утилиты [DefenderKiller](https://t.me/martyfiles/1504).
+> Требуется лишь следовать несложным инструкциям в окне программы.
 
 > [!Tip]
 > Ярлык приложения Безопасность Windows в меню Пуск удаляется отдельно в DefenderKiller > Пункт 3 > Пункт 2.
 #
+### 🧩 Компоненты Windows
+- Удалить все предустановленные компоненты
+`(Компоненты в Настройки > Система > Дополнительные компоненты > Посмотреть компоненты)` 
+> [!IMPORTANT]
+> Компонент `Язык сценариев VBScript` может быть нужен для установки некоторых программ (Epic Games) и драйверов (AMD).
+
+> [!Tip]
+> Если столкнулись с проблемами – установите его в `Настройки > Система > Дополнительные компоненты > Посмотреть компоненты > Посмотреть доступные функции`.
+#
 ### 🕒 Планировщик задач
 - Отключить задачи телеметрии и проверок
-`(Отключает десятки задач связанных с телеметрией, проверками, отчетами и диагностиками)`
+`(Десятки задач связанных с телеметрией, проверками, отчетами и диагностиками)`
 > [!Tip]
 > Включить нужные задачи можно через Планировщик задач.
 #
@@ -97,7 +138,7 @@
 - Отключить Game DVR
 - Установить схему питания "Максимальная производительность"
 - Отключить функцию "Возобновить"
-`(освобождает 200 МБ ОЗУ)`
+`(Освобождает 200 МБ ОЗУ)`
 > [!Tip]
 > Вместо точек восстановления рекомендую делать [полноценный бэкап системы](https://www.youtube.com/watch?v=rHg_kV5xJnk).
 #
@@ -167,13 +208,6 @@
 > [!IMPORTANT]
 > На слабых ПК может занимать много времени.
 #
-
 <div align="center">
-  
-### Донаты
-
-[![Buy Me a Coffee](https://img.shields.io/badge/Buy%20Me%20a%20Coffee-FFDD00?style=for-the-badge&logo=buy-me-a-coffee&logoColor=black)](https://www.buymeacoffee.com/martyfiles)
-[![Ko-fi](https://img.shields.io/badge/Ko--fi-29ABE0?style=for-the-badge&logo=ko-fi&logoColor=white)](https://ko-fi.com/martyfiles)
-[![Telegram](https://img.shields.io/badge/Telegram-26A5E4?style=for-the-badge&logo=telegram&logoColor=white)](https://t.me/tribute/app?startapp=dg3u)
-
+<strong>ПРИЯТНОГО ПОЛЬЗОВАНИЯ!</strong>
 </div>
