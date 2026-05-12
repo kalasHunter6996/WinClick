@@ -195,6 +195,7 @@ Rem Удаление Помощника по удаленному подключ
 	exit /b
 	
 :RemoveEdge
+Rem Удаление браузера Edge
 	%TI% taskkill /f /im MicrosoftEdge.exe >nul 2>&1
 	%TI% taskkill /f /im MicrosoftEdgeUpdate.exe >nul 2>&1
 	%TI% taskkill /f /im MicrosoftEdgeWebView.exe >nul 2>&1
