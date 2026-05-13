@@ -204,6 +204,7 @@ Rem Удаление браузера Edge
 	exit /b
 	
 :RemoveEdgeWebView
+Rem Удаление компонента Edge WebView2
 	%TI% taskkill /f /im MicrosoftEdge.exe >nul 2>&1
 	%TI% taskkill /f /im MicrosoftEdgeUpdate.exe >nul 2>&1
 	%TI% taskkill /f /im MicrosoftEdgeWebView.exe >nul 2>&1
