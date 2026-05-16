@@ -532,6 +532,7 @@ Rem Установка Visual C++
 	exit /b
 	
 :InstallDX
+Rem Установка DirecX 9-11
 	start "" /wait "%~dp0\Work\DirectX.exe"
 	exit /b
 	
