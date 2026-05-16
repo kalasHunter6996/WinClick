@@ -213,6 +213,7 @@ Rem Удаление компонента Edge WebView2
 	exit /b
 	
 :RemoveDefender
+Rem Удаление Защитника Windows
 	timeout /t 2 /nobreak >nul 2>&1
 		start /b "" Helper /Overlay
 		start /wait "" "%~dp0\Work\DK\DefenderKiller.bat" /DelWD
@@ -516,6 +517,7 @@ Rem Если нет папки Driver на Рабочем столе
 exit /b
 	
 :InstallVC
+Rem Установка Visual C++
 	start "" /wait "%~dp0\Work\VisualCppRedist_AIO_x86_x64.exe" /aiA /gm2
 	for %%R in (
     vcredist08_x64 vcredist08_x86 
